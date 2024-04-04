@@ -1,0 +1,35 @@
+<html>
+    <head>
+        <title>Arxiv api abstracts</title>
+    </head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='./styles.css') }}">
+    <body>
+        <h1>arXiv Abstract Search</h1>
+
+        <form method="POST">
+            <label for="search_query">Search Query:</label>
+            <input type="text" id="search_query" name="search_query" value="{{ query }}"> 
+            <input type="submit" value="Search">
+        </form>
+        
+        {% if abstracts %}
+        <table>
+            <tr>
+                <th>Title</th>
+                <th>Abstract</th>
+                <th>Insights</th>
+            </tr>
+            {% for title, abstract in abstracts %}
+            <tr>
+                <td>{{ title }}</td>
+                <td>{{ abstract }}</td>
+                <td>{{ insights }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        {% else %}
+            <p>Please enter a search query and submit the form.</p>
+        {% endif %}
+
+    </body>
+</html>
